@@ -28,18 +28,17 @@ public class UserServiceImpl {
             System.out.println("Введите lesson:");
             String lesson = reader.readLine();
 
-            UserDaoJDBCImpl userDaoJDBC = new UserDaoJDBCImpl();
-            userDaoJDBC.saveUserStudent(FIO, ball, lesson);
 
-            System.out.println("Введите lesson:");
-//            lesson = reader.readLine();
+ /*           System.out.println("Введите lesson:");
+            lesson = reader.readLine();
             System.out.println("lesson_id:");
             int lesson_id = Integer.parseInt(reader.readLine());
             System.out.println("Введите mark:");
-            String mark = reader.readLine();
-
-            userDaoJDBC = new UserDaoJDBCImpl();
-            userDaoJDBC.saveUserLesson(lesson, lesson_id, mark);
+             String mark = reader.readLine();
+*/
+            UserDaoJDBCImpl userDaoJDBC = new UserDaoJDBCImpl();
+            userDaoJDBC.saveUserStudent(FIO, ball, lesson);
+//            userDaoJDBC.saveUserLesson(lesson, lesson_id, mark);
 
 //            UserDaoJDBCImpl userDaoJDBC = new UserDaoJDBCImpl();
 //            reader.close();
@@ -51,12 +50,11 @@ public class UserServiceImpl {
             conn.setAutoCommit(true);
         }
     }
-}
 
-   /* public void saveLesson() throws SQLException, IOException {
+
+    public void saveLesson() throws SQLException, IOException {
         conn.setAutoCommit(false);
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in)))
-        {
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
             System.out.println("Введите lesson:");
             String lesson = reader.readLine();
             System.out.println("lesson_id:");
@@ -74,7 +72,8 @@ public class UserServiceImpl {
         } finally {
             conn.setAutoCommit(true);
         }
-    }*/
+    }
+}
 
 
 //    public void dropUsersTable() throws SQLException {
