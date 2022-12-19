@@ -15,7 +15,7 @@ public class Main {
 
         userServiceImpl.saveStudent();
 
-        userServiceImpl.saveLesson();
+//        userServiceImpl.saveLesson();
 
         System.exit(0);
     }

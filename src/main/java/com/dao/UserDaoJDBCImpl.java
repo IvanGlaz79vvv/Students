@@ -14,8 +14,8 @@ public class UserDaoJDBCImpl {
             "(id INT PRIMARY KEY AUTO_INCREMENT, " +
             "Lesson VARCHAR(255), " +
             "Lesson_id INT, " +
-            "mark VARCHAR(255)," +
-            "FOREIGN KEY (Lesson_id) REFERENCES Students (id))";
+            "mark VARCHAR(255))";
+//            "FOREIGN KEY (Lesson_id) REFERENCES Students (id))";
     private static final String CREATETABLE_Students = "CREATE TABLE IF NOT EXISTS Students" +
             "(id INT PRIMARY KEY AUTO_INCREMENT, " +
             "FIO VARCHAR(255), " +

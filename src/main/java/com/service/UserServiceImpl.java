@@ -29,16 +29,16 @@ public class UserServiceImpl {
             String lesson = reader.readLine();
 
 
- /*           System.out.println("Введите lesson:");
-            lesson = reader.readLine();
+//            System.out.println("Введите lesson:");
+//            lesson = reader.readLine();
             System.out.println("lesson_id:");
             int lesson_id = Integer.parseInt(reader.readLine());
             System.out.println("Введите mark:");
-             String mark = reader.readLine();
-*/
+            String mark = reader.readLine();
+
             UserDaoJDBCImpl userDaoJDBC = new UserDaoJDBCImpl();
             userDaoJDBC.saveUserStudent(FIO, ball, lesson);
-//            userDaoJDBC.saveUserLesson(lesson, lesson_id, mark);
+            userDaoJDBC.saveUserLesson(lesson, lesson_id, mark);
 
 //            UserDaoJDBCImpl userDaoJDBC = new UserDaoJDBCImpl();
 //            reader.close();
