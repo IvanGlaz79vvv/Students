@@ -11,12 +11,14 @@ public class Main {
         System.out.println("\nHello world!");
 
         UserServiceImpl userServiceImpl = new UserServiceImpl();
-        userServiceImpl.createUsersTable();
-
+//
+//        userServiceImpl.createUsersTable();
+//
         userServiceImpl.saveStudent();
 
-//        userServiceImpl.saveLesson();
+//        userServiceImpl.getUser();
 
         System.exit(0);
     }
+
 }

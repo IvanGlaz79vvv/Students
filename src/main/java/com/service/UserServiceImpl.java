@@ -2,12 +2,13 @@ package com.service;
 
 import com.dao.UserDaoJDBCImpl;
 import com.util.Util;
+import com.Model.User;
+
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class UserServiceImpl {
@@ -72,6 +73,14 @@ public class UserServiceImpl {
         } finally {
             conn.setAutoCommit(true);
         }
+    }
+
+    public void getUser() throws IOException, SQLException {
+        System.out.println("Введите id студента");
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        int id = Integer.parseInt(reader.readLine());
+        UserDaoJDBCImpl userDaoJDBC = new UserDaoJDBCImpl();
+        System.out.println(userDaoJDBC.getUserById(id));
     }
 }
 

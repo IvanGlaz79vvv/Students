@@ -1,5 +1,6 @@
 package com.dao;
 
+import com.Model.User;
 import com.util.Util;
 
 import java.sql.*;
@@ -9,11 +10,12 @@ public class UserDaoJDBCImpl {
     }
 
     private final Connection conn = Util.getConnection();
+    private User user = new User();
 
     private static final String CREATETABLE_Lesson = "CREATE TABLE IF NOT EXISTS Lesson" +
             "(id INT PRIMARY KEY AUTO_INCREMENT, " +
             "Lesson VARCHAR(255), " +
-            "Lesson_id INT, " +
+            "Lesson_id INT UNIQUE, " +
             "mark VARCHAR(255))";
 //            "FOREIGN KEY (Lesson_id) REFERENCES Students (id))";
     private static final String CREATETABLE_Students = "CREATE TABLE IF NOT EXISTS Students" +
@@ -24,6 +26,10 @@ public class UserDaoJDBCImpl {
 
     private static final String SAVE_Student = "INSERT INTO Students (FIO , ball , lesson) VALUES (?, ?, ?)";
     private static final String SAVE_Lesson = "INSERT INTO Lesson (Lesson, Lesson_id, mark) VALUES (?, ?, ?)";
+
+    private static final String SELECTidUser = "SELECT * FROM Students WHERE id = ?";
+
+    private static final String SELECTid = "SELECT * FROM lesson WHERE id = ?";
 
     private static final String DELETE = "DELETE FROM Students WHERE id = ?";
     private static final String SAVE = "INSERT INTO Students (Name, Last_Name, age) VALUES (?, ?, ?)";
@@ -132,6 +138,34 @@ public class UserDaoJDBCImpl {
                 System.out.println("^^^^^<<<Dao.saveUserStudent>>> Ошибка setAutoCommit(true) createTable^^^^^");
             }
         }
+    }
+
+    public User getUserById(int id) throws SQLException {
+        conn.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
+//        System.out.println("<<<getUserById>>>: \n 1 = UNCOMMITTED  \n 2 = READ_COMMITTED \n 4 = REPEATABLE_READ \n 8 = SERIALIZABLE \n getTransactionIsolation: = " + conn.getTransactionIsolation());
+        conn.setAutoCommit(false);
+
+        try (PreparedStatement preparedStatement = conn.prepareStatement(SELECTidUser)) {
+
+            preparedStatement.setInt(1, id);  // так мы подставляем вместо знака вопроса нужный id
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                int userId = resultSet.getInt(1); // получили id пользователя
+                String FIO = resultSet.getString(2); // получили FIO
+                int ball = resultSet.getInt(3); // получили поле ball
+                String lesson = resultSet.getString(4); // получили lesson
+
+                user = new User(id, FIO, ball, lesson);
+            }
+            conn.commit();
+        } catch (SQLException e) {
+            System.err.println("<<<getUserById>>> Запущен rollback()" + e);
+            conn.rollback();
+        } finally {
+            conn.setAutoCommit(true);
+        }
+        return user;
     }
 }
 
