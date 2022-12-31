@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="https://jakarta.ee/xml/ns/persistence/orm"
+                 version="3.0">
+
+    <entity class="com.Hibernate.StudentsEntity">
+        <table name="students" schema="mywork" catalog=""/>
+        <attributes>
+            <id name="id">
+                <column name="id" precision="-1"/>
+            </id>
+            <basic name="fio">
+                <column name="FIO" nullable="false"/>
+            </basic>
+            <basic name="ball">
+                <column name="ball" nullable="false" precision="-1"/>
+            </basic>
+            <basic name="lesson">
+                <column name="lesson" nullable="false"/>
+            </basic>
+        </attributes>
+    </entity>
+    <entity class="com.Hibernate.LessonEntity">
+        <table name="lesson" schema="mywork" catalog=""/>
+        <attributes>
+            <id name="id">
+                <column name="id" precision="-1"/>
+            </id>
+            <basic name="lesson">
+                <column name="Lesson" nullable="false"/>
+            </basic>
+            <basic name="mark">
+                <column name="mark" nullable="false"/>
+            </basic>
+        </attributes>
+    </entity>
+    <entity class="com.Hibernate.StudentsEntity">
+        <table name="students" schema="mywork" catalog=""/>
+        <attributes>
+            <id name="id">
+                <column name="id" precision="-1"/>
+            </id>
+            <basic name="fio">
+                <column name="FIO" nullable="false"/>
+            </basic>
+            <basic name="ball">
+                <column name="ball" nullable="false" precision="-1"/>
+            </basic>
+            <basic name="lesson">
+                <column name="lesson" nullable="false"/>
+            </basic>
+        </attributes>
+    </entity>
+</entity-mappings>

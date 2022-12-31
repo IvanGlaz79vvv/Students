@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+    "-//Hibernate/Hibernate Configuration DTD//EN"
+    "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+
+    <property name="connection.url">jdbc:mysql://localhost:3306/MyWork</property> <!--jdbc:mysql://localhost:3306/mywork-->
+    <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+
+    <property name="connection.username">root</property> <!--db.username-->
+    <property name="connection.password">root</property> <!--db.password-->
+
+    <!-- JDBC connection pool (using the built-in) -->
+    <property name="connection.pool_size">5</property>
+
+    <!-- Disable the second-level cache -->
+<!--    <property name="cache.provider_class">org.hibernate.cache.internal.NoCacheProvider</property>-->
+    <!-- SQL dialect -->
+    <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+    <!-- Echo all executed SQL to stdout -->
+    <property name="show_sql">true</property>
+    <!-- Format the generated Sql -->
+    <property name="format_sql">true</property>
+    <!-- Dont Drop and re-create the database schema on startup,Just update it -->
+    <property name="hbm2ddl.auto">update</property>
+    <mapping resource="LessonEntity.hbm.xml"/>
+    <mapping class="com.Hibernate.LessonEntity"/>
+    <mapping resource="StudentsEntity.xml"/>
+    <mapping class="com.Hibernate.StudentsEntity"/>
+    <mapping resource="StudentsEntity.hbm.xml"/>
+
+
+    <!-- DB schema will be updated if needed -->
+    <!-- <property name="hibernate.hbm2ddl.auto">update</property> -->
+  </session-factory>
+</hibernate-configuration>
